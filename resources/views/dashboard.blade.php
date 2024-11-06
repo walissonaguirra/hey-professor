@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-8">
         <form action="{{ route('question.store') }}" method="post">
             @csrf
             <label for="about" class="block text-sm/6 font-medium text-gray-800">Questão</label>
@@ -37,5 +37,16 @@
                 Salva
             </button>
         </form>
+
+        <hr class="my-4 border-gray-700 border-dashed"/>
+
+        <div class="text-gray-700 uppercase font-bold mb-2">Lista de questões</div>
+
+        <ul class="text-gray-700">
+            @foreach ($questions as $item)
+            <li>{{ $item->question }}</li>
+            @endforeach
+        </ul>
+
     </div>
 </x-app-layout>
