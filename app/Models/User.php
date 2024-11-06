@@ -47,4 +47,18 @@ class User extends Authenticatable
             'password'          => 'hashed',
         ];
     }
+
+    public function votes()
+    {
+        return $this->HasMany(Vote::class);
+    }
+
+    public function like(Question $question): void
+    {
+        $this->votes()->create([
+            'question_id' => $question->id,
+            'like'        => 1,
+            'unlike'      => 0,
+        ]);
+    }
 }

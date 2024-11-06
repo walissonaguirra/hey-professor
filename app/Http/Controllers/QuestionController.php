@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionStoreRequest;
-use App\Models\{Question, Vote};
+use App\Models\{Question};
 
 class QuestionController extends Controller
 {
@@ -18,12 +18,7 @@ class QuestionController extends Controller
 
     public function like(Question $question)
     {
-        Vote::create([
-            'question_id' => $question->id,
-            'user_id'     => auth()->id,
-            'like'        => 1,
-            'unlike'      => 0,
-        ]);
+        auth()->user()->like($question);
 
         return back();
     }
