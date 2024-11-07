@@ -19,4 +19,9 @@ class Question extends Model
     {
         return $this->hasMany(Vote::class);
     }
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
 }
