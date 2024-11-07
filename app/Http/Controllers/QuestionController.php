@@ -23,6 +23,7 @@ class QuestionController extends Controller
     /**
      * Salva novas perguntas
      *
+     * @param QuestionStoreRequest $request
      * @return void
      */
     public function store(QuestionStoreRequest $request)
@@ -35,8 +36,35 @@ class QuestionController extends Controller
     }
 
     /**
+     * Form para editar um pergunta
+     *
+     * @param Question $question
+     * @return void
+     */
+    public function edit(Question $question)
+    {
+        return view('question.edit', compact('question'));
+    }
+
+    /**
+     * Paga uma pergunta
+     *
+     * @param Question $question
+     * @return void
+     */
+    public function destroy(Question $question)
+    {
+        Gate::authorize('destroy', $question);
+
+        $question->delete();
+
+        return back();
+    }
+
+    /**
      * Salva 'likes' do usuario logado em um pergunta
      *
+     * @param Question $question
      * @return void
      */
     public function like(Question $question)
@@ -49,6 +77,7 @@ class QuestionController extends Controller
     /**
      * Salva 'deslikes' do usuario logado em um pergunta
      *
+     * @param Question $question
      * @return void
      */
     public function unlike(Question $question)
@@ -69,15 +98,6 @@ class QuestionController extends Controller
         Gate::authorize('publish', $question);
 
         $question->update(['draft' => false]);
-
-        return back();
-    }
-
-    public function destroy(Question $question)
-    {
-        Gate::authorize('destroy', $question);
-
-        $question->delete();
 
         return back();
     }
