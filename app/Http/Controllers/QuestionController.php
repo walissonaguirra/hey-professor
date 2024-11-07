@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionStoreRequest;
 use App\Models\{Question};
+use Illuminate\Support\Facades\Gate;
 
 class QuestionController extends Controller
 {
+    /**
+     * Lista perguntas do usuário logado
+     *
+     * @return void
+     */
+    public function index()
+    {
+        return view('question.index', [
+            'questions' => auth()->user()->questions,
+        ]);
+    }
+
     /**
      * Salva novas perguntas
      *
@@ -16,9 +29,9 @@ class QuestionController extends Controller
     {
         $attributes = $request->validated();
 
-        Question::create(array_merge($attributes, ['draft' => true]));
+        auth()->user()->questions()->create(array_merge($attributes, ['draft' => true]));
 
-        return redirect('dashboard');
+        return back();
     }
 
     /**
@@ -53,9 +66,18 @@ class QuestionController extends Controller
      */
     public function publish(Question $question)
     {
-        $this->authorize('publish', $question);
+        Gate::authorize('publish', $question);
 
         $question->update(['draft' => false]);
+
+        return back();
+    }
+
+    public function destroy(Question $question)
+    {
+        Gate::authorize('destroy', $question);
+
+        $question->delete();
 
         return back();
     }
