@@ -26,7 +26,7 @@ class QuestionStoreRequest extends FormRequest
             'question' => [
                 'required',
                 'min:10',
-                new EndWithQuestionMarkRule(),
+                new EndWithQuestionMarkRule,
             ],
         ];
     }
