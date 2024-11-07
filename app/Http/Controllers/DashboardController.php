@@ -6,6 +6,11 @@ use App\Models\Question;
 
 class DashboardController extends Controller
 {
+    /**
+     * Lista todas as perguntas publicadas
+     *
+     * @return void
+     */
     public function __invoke()
     {
         $questions = Question::query()
