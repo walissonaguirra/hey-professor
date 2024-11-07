@@ -47,10 +47,10 @@
             <li>
                 {{ $question->question }}
                 <a class="text-blue-500" href="{{ route('question.like', $question) }}">
-                    Like ({{ $question->likes }})
+                    Like ({{ $question->votes_sum_like ?: 0 }})
                 </a>
                 <a class="text-red-500" href="{{ route('question.unlike', $question) }}">
-                    Deslike ({{ $question->unlikes }})
+                    Deslike ({{ $question->votes_sum_unlike ?: 0 }})
                 </a>
             </li>
             @endforeach

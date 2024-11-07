@@ -8,7 +8,11 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
-        $questions = Question::query()->orderByDesc('created_at')->get();
+        $questions = Question::query()
+            ->withSum('votes', 'like')
+            ->withSum('votes', 'unlike')
+            ->orderByDesc('created_at')
+            ->get();
 
         return view('dashboard', compact('questions'));
     }
