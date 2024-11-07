@@ -11,6 +11,7 @@ class DashboardController extends Controller
         $questions = Question::query()
             ->withSum('votes', 'like')
             ->withSum('votes', 'unlike')
+            ->where('draft', false)
             ->orderByDesc('created_at')
             ->get();
 
