@@ -16,7 +16,7 @@ class QuestionController extends Controller
     {
         $attributes = $request->validated();
 
-        Question::create($attributes);
+        Question::create(array_merge($attributes, ['draft' => true]));
 
         return redirect('dashboard');
     }
