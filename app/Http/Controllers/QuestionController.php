@@ -53,6 +53,8 @@ class QuestionController extends Controller
      */
     public function publish(Question $question)
     {
+        $this->authorize('publish', $question);
+
         $question->update(['draft' => false]);
 
         return back();
