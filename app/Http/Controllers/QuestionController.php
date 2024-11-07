@@ -7,6 +7,11 @@ use App\Models\{Question};
 
 class QuestionController extends Controller
 {
+    /**
+     * Salva novas perguntas
+     *
+     * @return void
+     */
     public function store(QuestionStoreRequest $request)
     {
         $attributes = $request->validated();
@@ -16,6 +21,11 @@ class QuestionController extends Controller
         return redirect('dashboard');
     }
 
+    /**
+     * Salva 'likes' do usuario logado em um pergunta
+     *
+     * @return void
+     */
     public function like(Question $question)
     {
         auth()->user()->like($question);

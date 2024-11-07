@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 class EndWithQuestionMarkRule implements ValidationRule
 {
     /**
-     * Run the validation rule.
+     * Criar um role para validar se o pergunta termina com '?'
      *
      * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
