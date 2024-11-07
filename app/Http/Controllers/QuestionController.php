@@ -44,4 +44,17 @@ class QuestionController extends Controller
 
         return back();
     }
+
+    /**
+     * Muda o estado de uma pergunta de rascunho para publico
+     *
+     * @param Question $question
+     * @return void
+     */
+    public function publish(Question $question)
+    {
+        $question->update(['draft' => false]);
+
+        return back();
+    }
 }
