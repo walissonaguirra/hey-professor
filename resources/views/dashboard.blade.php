@@ -46,12 +46,20 @@
             @foreach ($questions as $question)
             <li>
                 {{ $question->question }}
-                <a class="text-blue-500" href="{{ route('question.like', $question) }}">
-                    Like ({{ $question->votes_sum_like ?: 0 }})
-                </a>
-                <a class="text-red-500" href="{{ route('question.unlike', $question) }}">
-                    Deslike ({{ $question->votes_sum_unlike ?: 0 }})
-                </a>
+
+                <form action="{{ route('question.like', $question) }}" method="post">
+                    @csrf
+                    <button class="text-blue-500" type="submit">
+                        Like ({{ $question->votes_sum_like ?: 0 }})
+                    </button>
+                </form>
+
+                <form action="{{ route('question.unlike', $question) }}" method="post">
+                    @csrf
+                    <button class="text-red-500" type="submit">
+                        Deslike ({{ $question->votes_sum_unlike ?: 0 }})
+                    </button>
+                </form>
             </li>
             @endforeach
         </ul>
