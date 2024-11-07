@@ -43,8 +43,16 @@
         <div class="text-gray-700 uppercase font-bold mb-2">Lista de questões</div>
 
         <ul class="text-gray-700">
-            @foreach ($questions as $item)
-            <li>{{ $item->question }}</li>
+            @foreach ($questions as $question)
+            <li>
+                {{ $question->question }}
+                <a class="text-blue-500" href="{{ route('question.like', $question) }}">
+                    Like ({{ $question->likes }})
+                </a>
+                <a class="text-red-500" href="{{ route('question.unlike', $question) }}">
+                    Deslike ({{ $question->unlikes }})
+                </a>
+            </li>
             @endforeach
         </ul>
 

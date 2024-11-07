@@ -32,4 +32,16 @@ class QuestionController extends Controller
 
         return back();
     }
+
+    /**
+     * Salva 'deslikes' do usuario logado em um pergunta
+     *
+     * @return void
+     */
+    public function unlike(Question $question)
+    {
+        auth()->user()->unlike($question);
+
+        return back();
+    }
 }
