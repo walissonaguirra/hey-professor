@@ -19,6 +19,21 @@ class QuestionPolicy
     }
 
     /**
+     * Check se a pergunta é um rascunha e se ela pertence
+     * ao usuário logado
+     *
+     * @param User $user
+     * @param Question $question
+     * @return boolean
+     */
+    public function update(User $user, Question $question): bool
+    {
+        return
+            $question->draft &&
+            $question->user->is($user);
+    }
+
+    /**
      * Check se o usuário logado pode apagar á pergunta
      *
      * @param User $user

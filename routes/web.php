@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/question/publish/{question}', [QuestionController::class, 'publish'])->name('question.publish');
     Route::delete('/question/delete/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
     Route::get('/question/{question}/edit', [QuestionController::class, 'edit'])->name('question.edit');
+    Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
