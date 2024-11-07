@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuestionStoreRequest;
+use App\Http\Requests\{QuestionStoreRequest, QuestionUpdateRequest};
 use App\Models\{Question};
 use Illuminate\Support\Facades\Gate;
 
@@ -43,7 +43,24 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
+        Gate::authorize('update', $question);
+
         return view('question.edit', compact('question'));
+    }
+
+    /**
+     * Edita uma pergunta
+     *
+     * @param Question $question
+     * @return void
+     */
+    public function update(QuestionUpdateRequest $request, Question $question)
+    {
+        Gate::authorize('update', $question);
+
+        $question->update($request->validated());
+
+        return back();
     }
 
     /**
