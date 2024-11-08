@@ -62,6 +62,8 @@
                         Apagar
                     </button>
                 </form>
+
+                <a href="{{ route('question.edit', $question) }}">Editar</a>
             </li>
             @endforeach
         </ul>

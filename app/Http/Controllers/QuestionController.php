@@ -60,7 +60,7 @@ class QuestionController extends Controller
 
         $question->update($request->validated());
 
-        return back();
+        return redirect()->route('question.index');
     }
 
     /**
