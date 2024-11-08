@@ -63,7 +63,35 @@
                     </button>
                 </form>
 
+                <form action="{{ route('question.archive', $question) }}" method="post">
+                    @method('patch')
+                    @csrf
+                    <button class="text-red-500" type="submit">
+                        Arquivar
+                    </button>
+                </form>
+
                 <a href="{{ route('question.edit', $question) }}">Editar</a>
+            </li>
+            @endforeach
+        </ul>
+
+        <br/>
+        <br/>
+        <br/>
+        <div class="text-gray-700 uppercase font-bold mb-2">Perguntas Arquivadas</div>
+        <ul class="text-gray-700">
+            @foreach ($archivedQuestions as $question)
+            <li>
+                {{ $question->question }}
+
+                <form action="{{ route('question.restore', $question) }}" method="post">
+                    @method('patch')
+                    @csrf
+                    <button class="text-red-500" type="submit">
+                        Des arquivar
+                    </button>
+                </form>
             </li>
             @endforeach
         </ul>
