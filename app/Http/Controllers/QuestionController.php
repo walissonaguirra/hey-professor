@@ -94,6 +94,20 @@ class QuestionController extends Controller
     }
 
     /**
+     * Restaurar uma pergunta (do soft delete)
+     *
+     * @param int $id - ID da pergunta
+     * @return void
+     */
+    public function restore($id)
+    {
+        $question = Question::withTrashed()->find($id);
+        $question->restore();
+
+        return back();
+    }
+
+    /**
      * Salva 'likes' do usuario logado em um pergunta
      *
      * @param Question $question
