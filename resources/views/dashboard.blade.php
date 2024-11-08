@@ -40,6 +40,5 @@
             </li>
             @endforeach
         </ul>
-
     </div>
 </x-app-layout>

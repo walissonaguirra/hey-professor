@@ -17,7 +17,10 @@ class DashboardController extends Controller
             ->withSum('votes', 'like')
             ->withSum('votes', 'unlike')
             ->where('draft', false)
-            ->orderByDesc('created_at')
+            ->orderByRaw('
+                coalesce(votes_sum_like, 0) desc,
+                coalesce(votes_sum_unlike, 0) asc
+            ')
             ->get();
 
         return view('dashboard', compact('questions'));
