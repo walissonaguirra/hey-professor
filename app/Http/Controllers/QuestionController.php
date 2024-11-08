@@ -16,7 +16,8 @@ class QuestionController extends Controller
     public function index()
     {
         return view('question.index', [
-            'questions' => auth()->user()->questions,
+            'questions'         => auth()->user()->questions,
+            'archivedQuestions' => auth()->user()->questions()->onlyTrashed()->get(),
         ]);
     }
 
