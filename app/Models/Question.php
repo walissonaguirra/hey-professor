@@ -9,6 +9,7 @@ class Question extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Prunable;
 
     protected $guarded = [];
 
@@ -24,5 +25,10 @@ class Question extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function prunable()
+    {
+        return static::where('deleted_at', '<=', now()->subMonth());
     }
 }
