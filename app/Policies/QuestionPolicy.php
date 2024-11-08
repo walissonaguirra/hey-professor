@@ -44,4 +44,16 @@ class QuestionPolicy
     {
         return $question->user->is($user);
     }
+
+    /**
+     * Check se o usuário logado pode arquiva á pergunta
+     *
+     * @param User $user
+     * @param Question $question
+     * @return boolean
+     */
+    public function archive(User $user, Question $question): bool
+    {
+        return $question->user->is($user);
+    }
 }

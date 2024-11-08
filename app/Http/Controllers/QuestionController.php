@@ -73,6 +73,21 @@ class QuestionController extends Controller
     {
         Gate::authorize('destroy', $question);
 
+        $question->forceDelete();
+
+        return back();
+    }
+
+    /**
+     * Arquiva como pergunta usando Soft Delete
+     *
+     * @param Question $question
+     * @return void
+     */
+    public function archive(Question $question)
+    {
+        Gate::authorize('archive', $question);
+
         $question->delete();
 
         return back();
