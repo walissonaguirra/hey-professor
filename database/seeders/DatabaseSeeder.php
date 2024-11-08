@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name'  => 'Walisson Aguirra',
-            'email' => 'walissonaguirra@proton.me',
-        ]);
+        // User::factory()->create([
+        //     'name'  => 'Walisson Aguirra',
+        //     'email' => 'walissonaguirra@proton.me',
+        // ]);
 
-        Question::factory(200)->create();
+        Question::factory(10)->create();
     }
 }
