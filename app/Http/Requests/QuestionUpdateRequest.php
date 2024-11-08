@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\EndWithQuestionMarkRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class QuestionUpdateRequest extends FormRequest
