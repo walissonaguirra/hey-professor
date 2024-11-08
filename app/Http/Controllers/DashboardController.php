@@ -14,6 +14,10 @@ class DashboardController extends Controller
     public function __invoke()
     {
         $questions = Question::query()
+            ->when(
+                request()->search,
+                fn ($q, $search) => $q->whereLike('question', "%{$search}%")
+            )
             ->withSum('votes', 'like')
             ->withSum('votes', 'unlike')
             ->where('draft', false)
